@@ -93,11 +93,14 @@ void CDlgImage::OnPaint()
 	drawData(&dc);
 }
 
+#define COLOR_RED	RGB(0xff, 0, 0)
+#define COLOR_GREEN RGB(0x00, 0xff, 0x00)
 void CDlgImage::drawData(CDC* pDC)
 {
 	CRect rect;
 	CPen pen;
-	pen.CreatePen(PS_SOLID, 5, RGB(0xff, 0, 0));
+	//pen.CreatePen(PS_SOLID, 5, RGB(0xff, 0, 0));	// 원의 borderline 설정
+	pen.CreatePen(PS_SOLID, 5, COLOR_GREEN);	// define으로 설정
 	CPen* pOldPen = pDC->SelectObject(&pen);
 	for (int i = 0; i < m_nDataCount; i++) {
 		rect.SetRect(m_ptData[i], m_ptData[i]);
