@@ -1,4 +1,4 @@
 *.VC.*
 *.aps
 .vs/
-.x64/Debug/
+x64/

@@ -72,6 +72,7 @@ BEGIN_MESSAGE_MAP(CgPrjDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_WM_DESTROY()
 	ON_BN_CLICKED(IDC_BTN_TEST, &CgPrjDlg::OnBnClickedBtnTest)
+	ON_BN_CLICKED(IDC_BTN_PROCESS, &CgPrjDlg::OnBnClickedBtnProcess)
 END_MESSAGE_MAP()
 
 
@@ -219,7 +220,7 @@ void CgPrjDlg::OnBnClickedBtnTest()
 			//if (fm[j * nPitch + i] != 0) {	// 배경 흰색
 			if (fm[j * nPitch + i] > nTh) {	// 배경 반전
 				if (m_pDlgImageResult->m_nDataCount < MAX_POINT) {
-					//cout << nIndex << ":" << i << "," << j << endl;
+					//cout << nIndex << ":" << i << "," << j << endl;	// 콘솔 결과값 출력
 					m_pDlgImageResult->m_ptData[nIndex].x = i;
 					m_pDlgImageResult->m_ptData[nIndex].y = j;
 					m_pDlgImageResult->m_nDataCount = ++nIndex;
@@ -230,4 +231,19 @@ void CgPrjDlg::OnBnClickedBtnTest()
 
 	m_pDlgImage->Invalidate();
 	m_pDlgImageResult->Invalidate();
+}
+
+#include "CProcess.h"
+#include <chrono>
+void CgPrjDlg::OnBnClickedBtnProcess()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	CProcess process;
+
+	auto start = std::chrono::system_clock::now();		// 일단 정하지 않겠다라는 의미
+	int nRet = process.getStarInfo(&m_pDlgImage->m_image, 100);
+	auto end = std::chrono::system_clock::now();
+	auto millisec = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+
+	cout << nRet << "\t" << millisec.count() << "ms" << endl;
 }

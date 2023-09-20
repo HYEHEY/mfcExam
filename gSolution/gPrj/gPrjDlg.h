@@ -3,6 +3,7 @@
 //
 
 #include "CDlgImage.h"	// 클래스 불러오기
+
 #pragma once
 
 
@@ -41,4 +42,5 @@ public:
 
 	void callFunc(int n);
 	afx_msg void OnBnClickedBtnTest();
+	afx_msg void OnBnClickedBtnProcess();
 };
